@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { findDOMNode } from "react-dom";
 import _ from "underscore";
 import cx from "classnames";
+import cxs from 'cxs';
 
 import OnClickOutsideWrapper from 'metabase/components/OnClickOutsideWrapper';
 import Icon from "metabase/components/Icon";
@@ -19,6 +20,11 @@ import {
     KEYCODE_BACKSPACE
 } from "metabase/lib/keyboard";
 import { isObscured } from "metabase/lib/dom";
+
+const inputBoxClasses = cxs({
+    maxHeight: '130px',
+    overflow: 'scroll'
+    })
 
 // somewhat matches react-select's API: https://github.com/JedWatson/react-select
 export default class TokenField extends Component {
@@ -383,7 +389,7 @@ export default class TokenField extends Component {
 
         const valuesList =
           <ul
-              className={cx("m1 px1 bordered rounded flex flex-wrap bg-white", {
+              className={cx("m1 p1 bordered rounded flex flex-wrap bg-white", {inputBoxClasses}, {
                 [`input--focus border-grey-2`]: this.state.focused
               })}
               style={this.props.style}
@@ -395,7 +401,7 @@ export default class TokenField extends Component {
                         {valueRenderer(v)}
                       </span>
                       <a
-                          className="text-grey-2 text-white-hover px1"
+                          className="text-grey-3 text-default-hover px1"
                           onClick={(e) => {
                             this.removeValue(v);
                             e.preventDefault();
@@ -435,9 +441,9 @@ export default class TokenField extends Component {
                       <div
                         ref={this._valueIsEqual(selectedOptionValue, this._value(option)) ? (_ => this.scrollElement = _) : null}
                         className={cx(
-                          `py1 pl1 pr2 block rounded text-bold inline-block cursor-pointer`,
+                          `py1 pl1 pr2 block rounded text-bold text-${color}-hover inline-block full cursor-pointer`,
                           `bg-grey-0-hover`, {
-                            [`text-white bg-${color}`]: !this.state.listIsHovered && this._valueIsEqual(selectedOptionValue, this._value(option))
+                            [`text-${color} bg-grey-0`]: !this.state.listIsHovered && this._valueIsEqual(selectedOptionValue, this._value(option))
                           }
                         )}
                         onClick={(e) => {

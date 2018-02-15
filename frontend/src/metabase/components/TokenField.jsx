@@ -383,14 +383,14 @@ export default class TokenField extends Component {
 
         const valuesList =
           <ul
-              className={cx("m1 px1 pb1 bordered rounded flex flex-wrap bg-white", {
-                [`input--focus border-${color}`]: this.state.focused
+              className={cx("m1 px1 bordered rounded flex flex-wrap bg-white", {
+                [`input--focus border-grey-2`]: this.state.focused
               })}
               style={this.props.style}
               onMouseDownCapture={this.onMouseDownCapture}
           >
               {value.map((v, index) =>
-                  <li key={v} className={`mr1 py1 pl1 mt1 rounded bg-${color} text-white`}>
+                  <li key={v} className={`mr1 py1 pl1 mt1 rounded bg-grey-5percent`}>
                       <span className="h4 text-bold">
                         {valueRenderer(v)}
                       </span>
@@ -436,7 +436,7 @@ export default class TokenField extends Component {
                         ref={this._valueIsEqual(selectedOptionValue, this._value(option)) ? (_ => this.scrollElement = _) : null}
                         className={cx(
                           `py1 pl1 pr2 block rounded text-bold inline-block cursor-pointer`,
-                          `text-white-hover bg-${color}-hover`, {
+                          `bg-grey-0-hover`, {
                             [`text-white bg-${color}`]: !this.state.listIsHovered && this._valueIsEqual(selectedOptionValue, this._value(option))
                           }
                         )}
